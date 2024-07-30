@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Gastos</title>
+    <link rel="stylesheet" href="./main.css">
+    <style>
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #feedd9;
+            color: #251c5b;
+        }
+
+        #tarjetas-container {
+            max-height: 400px; /* Ajusta según tus necesidades */
+            overflow-y: auto; /* Añade barra de desplazamiento vertical si es necesario */
+            margin-left: 20px; /* Espacio entre el formulario y el contenedor de tarjetas */
+        }
+
+        .form-image-container {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        .form-container {
+            flex: 1;
+        }
+
+        .card-container {
+            flex: 1;
+            max-width: 300px; /* Ajusta el ancho máximo según sea necesario */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Gastos</h1>
+        <div class="dropdown-container">
+            <label for="object-dropdown">Selecciona un cuadro:</label>
+            <select id="object-dropdown">
+                <option value="-1">Ninguno</option>
+            </select>
+            <p id="object-details">Selecciona un objeto para ver sus detalles.</p>
+        </div>
+        <div class="form-image-container">
+            <div class="form-container">
+                <h2>Agregar cuadro personalizado</h2>
+                <form id="expense-form">
+                    <label id="altura" for="height">Altura (cm):</label>
+                    <input type="number" id="height" name="height" required>
+
+                    <label id="anchura" for="width">Anchura (cm):</label>
+                    <input type="number" id="width" name="width" required>
+
+                    <label id="tiempo" for="production-time">Tiempo de Producción (min):</label>
+                    <input type="number" id="production-time" name="production-time" required>
+
+                    <label id="precio" for="price">Precio:</label>
+                    <input type="number" id="price" name="price" required>
+
+                    <button type="button" id="calculate-btn">Calcular</button>
+                </form>
+                <div id="result" class="result"></div>
+            </div>
+            <div class="card-container">
+                <div id="tarjetas-container"></div> <!-- Contenedor para las tarjetas -->
+            </div>
+            <div class="image-container">
+                <img src="./img/alphonse-elric.png" alt="Descripción de la imagen">
+            </div>
+        </div>
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+</html>
