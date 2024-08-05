@@ -101,13 +101,11 @@ function calcularResultados() {
     const price = parseFloat(document.getElementById('price').value);
     const selectedIndex = parseInt(document.getElementById('object-dropdown').value);
 
-    // Validar datos del formulario
     if (isNaN(height) || isNaN(width) || isNaN(productionTime) || isNaN(price)) {
         alert('Por favor, completa todos los campos correctamente.');
         return;
     }
 
-    // Verificar la opción seleccionada en el dropdown
     const producto = selectedIndex === -1 ? null : productos[selectedIndex];
 
     const datos = producto ? {
@@ -124,11 +122,11 @@ function calcularResultados() {
         nombre: 'Personalizado'
     };
 
-    const valorPorCm2 = 0.017; // Ejemplo
-    const costoPorMinuto = 0.16; // Ejemplo
-    const cantidadProductos = 1; // Ejemplo
-    const gastoInicial = 50; // Ejemplo
-    const gastoVariablePorUnidad = 10; // Ejemplo
+    const valorPorCm2 = 0.017; 
+    const costoPorMinuto = 0.16; 
+    const cantidadProductos = 1; 
+    const gastoInicial = 200;
+    const gastoVariablePorUnidad = 10; 
 
     const { mensaje, resultadoTotal } = sumarResultados(
         datos.altoCm, datos.anchoCm, valorPorCm2, datos.minutosUtilizados, costoPorMinuto,
@@ -139,13 +137,11 @@ function calcularResultados() {
         `Gasto Total: $${resultadoTotal} <br>
         ${mensaje}`;
 
-    // Reiniciar los datos del formulario
     document.getElementById('height').value = '';
     document.getElementById('width').value = '';
     document.getElementById('production-time').value = '';
     document.getElementById('price').value = '';
 
-    // Crear la tarjeta con los datos del producto
     const tarjeta = {
         nombre: datos.nombre,
         alto: datos.altoCm,
@@ -156,16 +152,14 @@ function calcularResultados() {
         ganancia: parseFloat((datos.precioVenta - resultadoTotal).toFixed(2))
     };
 
-    // Guardar la tarjeta en el localStorage
+
     let tarjetas = JSON.parse(localStorage.getItem('tarjetas')) || [];
     tarjetas.push(tarjeta);
     localStorage.setItem('tarjetas', JSON.stringify(tarjetas));
 
-    // Mostrar las tarjetas almacenadas
     mostrarTarjetas();
 
-    // Restablecer el dropdown a "Ninguno"
-    document.getElementById('object-dropdown').selectedIndex = 0; // Restablecer a "Ninguno"
+    document.getElementById('object-dropdown').selectedIndex = 0; 
 }
 
 
@@ -197,7 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('object-dropdown').addEventListener('change', (event) => {
         const index = parseInt(event.target.value);
         if (index === -1) {
-            // Limpiar detalles del objeto cuando se selecciona "Ninguno"
             document.getElementById('object-details').innerHTML = 'Selecciona un objeto para ver sus detalles.';
             document.getElementById('height').value = '';
             document.getElementById('width').value = '';
@@ -210,6 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('calculate-btn').addEventListener('click', calcularResultados);
 
-    // Mostrar las tarjetas almacenadas al cargar la página
+
     mostrarTarjetas();
 });
